@@ -1,5 +1,6 @@
 scripts:
   dev:
-    cmd: index.ts
+    cmd: index.tsx
     allow:
         - net
+    tsconfig: tsconfig.json
