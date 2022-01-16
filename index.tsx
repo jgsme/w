@@ -1,10 +1,12 @@
-/** @jsx h */
-import { serve } from "https://deno.land/std@0.121.0/http/server.ts";
 import {
   h,
   Helmet,
   renderSSR,
 } from "https://deno.land/x/nano_jsx@v0.0.28/mod.ts";
+import { Application, Router } from "https://deno.land/x/oak@v10.1.0/mod.ts";
+import { parse } from "https://deno.land/x/scrapbox_parser@0.0.1/src/index.ts";
+
+const router = new Router();
 
 const App = () => (
   <div>
@@ -28,9 +30,18 @@ const html = `
 </body>
 `;
 
-console.log("Listening on http://localhost:8000");
-serve((_req) => {
-  return new Response(html, {
-    headers: { "content-type": "text/html" },
-  });
+router.get("/pages/:name", async (ctx) => {
+  const res = await fetch(
+    `https://scrapbox.io/api/pages/jigsaw/${
+      encodeURIComponent(ctx.params.name)
+    }/text`,
+  );
+  const text = await res.text();
+  console.log(parse(text));
+  ctx.response.body = html;
+  ctx.response.type = "html";
 });
+
+const app = new Application();
+app.use(router.routes());
+app.listen({ port: 8080 });

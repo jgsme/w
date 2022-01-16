@@ -6,6 +6,7 @@
       "dom",
       "dom.iterable",
       "dom.asynciterable"
-    ]
+    ],
+    "jsxFactory": "h"
   }
 }
