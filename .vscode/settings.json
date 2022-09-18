@@ -1,11 +1,5 @@
 {
   "deno.enable": true,
   "deno.lint": true,
-  "deno.unstable": true,
-  "deno.config": "./tsconfig.json",
-  "[typescript]": {
-    "editor.defaultFormatter": "denoland.vscode-deno"
-  },
-  "terminal.integrated.defaultProfile.linux": "zsh",
-  "editor.formatOnSave": true
+  "editor.defaultFormatter": "denoland.vscode-deno"
 }
