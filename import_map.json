@@ -9,6 +9,7 @@
     "twind": "https://esm.sh/twind@0.16.17",
     "twind/": "https://esm.sh/twind@0.16.17/",
     "supabase": "https://esm.sh/@supabase/supabase-js@2.0.0-rc.10",
-    "dotenv": "https://deno.land/x/dotenv@v3.2.0/load.ts"
+    "dotenv": "https://deno.land/x/dotenv@v3.2.0/load.ts",
+    "scrapbox-parser": "https://deno.land/x/scrapbox_parser@0.0.1/src/index.ts"
   }
 }
