@@ -136,6 +136,9 @@ const blockRender = (block: Block) => {
         </div>
       );
     }
+    case "title": {
+      return <h1 class="text-[20px] font-bold mb-[20px]">{block.text}</h1>;
+    }
     default:
       console.log(block);
       return "";
