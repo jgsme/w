@@ -29,7 +29,7 @@ export default function Page({ data }: PageProps<string>) {
   }, [data]);
   return page
     ? (
-      <div class="max-w-[600px] mx-auto">
+      <div class="max-w-[600px] mx-auto p-2">
         <Render page={page}></Render>
       </div>
     )
