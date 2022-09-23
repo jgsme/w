@@ -11,19 +11,12 @@ export const handler = async (
   _req: Request,
   _ctx: HandlerContext,
 ): Promise<Response> => {
-  const { data, error } = await client.from("articles").select(`
-    pages(
-      id,
-      title,
-      created,
-      image
-    )
-  `).order(
-    "created",
-    { ascending: false, foreignTable: "pages" },
-  ).limit(20);
+  const { data, error } = await client.rpc("latest_articles", {
+    offset_arg: 0,
+    limit_arg: 20,
+  });
   if (data) {
-    return new Response(JSON.stringify(data.map(({ pages }) => (pages))));
+    return new Response(JSON.stringify(data));
   }
   console.log(error);
   return _ctx.renderNotFound();
