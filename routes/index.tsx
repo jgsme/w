@@ -15,6 +15,7 @@ export const handler: Handlers<Page[]> = {
     const res = await fetch(
       "https://w.kbys.tk/api/home",
     );
+    console.log(res.status);
     if (res.status !== 200) {
       return ctx.render([]);
     }
