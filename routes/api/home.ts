@@ -15,7 +15,8 @@ export const handler = async (
     pages(
       id,
       title,
-      created
+      created,
+      image
     )
   `).order(
     "created",
