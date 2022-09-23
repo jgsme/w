@@ -13,9 +13,9 @@ type Page = {
 export const handler: Handlers<Page[]> = {
   async GET(_, ctx) {
     const res = await fetch(
-      "https://w.kbys.tk/api/home",
+      "https://sbx.deno.dev/api/home",
     );
-    console.log(ctx, res.status);
+    console.log(res.status);
     if (res.status !== 200) {
       return ctx.render([]);
     }
