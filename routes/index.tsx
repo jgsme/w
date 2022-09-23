@@ -2,6 +2,7 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { titlePurify } from "../lib/titlePurify.ts";
 import { Head } from "$fresh/src/runtime/head.ts";
 import { gyazoSrcset, isGyazoUrl } from "../lib/gyazo.ts";
+import { latsetArticles } from "../lib/latestArticles.ts";
 
 type Page = {
   id: string;
@@ -12,15 +13,14 @@ type Page = {
 
 export const handler: Handlers<Page[]> = {
   async GET(_, ctx) {
-    const res = await fetch(
-      "https://sbx.deno.dev/api/home",
-    );
-    console.log(res.status);
-    if (res.status !== 200) {
-      return ctx.render([]);
+    const { data, error } = await latsetArticles();
+    if (data) {
+      return ctx.render(data);
     }
-    const home = await res.json();
-    return ctx.render(home);
+    if (error) {
+      console.log(error);
+    }
+    return ctx.render([]);
   },
 };
 
