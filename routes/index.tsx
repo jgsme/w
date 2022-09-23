@@ -1,10 +1,12 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { titlePurify } from "../lib/titlePurify.ts";
+import { Head } from "$fresh/src/runtime/head.ts";
 
 type Page = {
   id: string;
   title: string;
   created: string;
+  image: string | null;
 };
 
 export const handler: Handlers<Page[]> = {
@@ -22,12 +24,26 @@ export const handler: Handlers<Page[]> = {
 
 export default function Home({ data }: PageProps<Page[]>) {
   return (
-    <ul>
-      {data.map((page) => (
-        <li key={page.id}>
-          <a href={`/pages/${titlePurify(page.title)}`}>{page.title}</a>
-        </li>
-      ))}
-    </ul>
+    <div class="max-w-[600px] mx-auto">
+      <Head>
+        <title>I am Electrical machine</title>
+      </Head>
+      <ul>
+        {data.map((page) => (
+          <li key={page.id} class="my-8">
+            <a href={`/pages/${titlePurify(page.title)}`}>
+              {page.image
+                ? <img src={page.image} class="mb-2 rounded"></img>
+                : (
+                  <div class="w-[400px] h-[300px] text-center mx-auto font-bold flex justify-center items-center bg-black bg-opacity-[0.04] mb-2 rounded text-[2rem]">
+                    {page.title}
+                  </div>
+                )}
+              <div class="font-bold text-[1.2rem]">{page.title}</div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
