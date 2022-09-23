@@ -1,6 +1,7 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { titlePurify } from "../lib/titlePurify.ts";
 import { Head } from "$fresh/src/runtime/head.ts";
+import { gyazoSrcset, isGyazoUrl } from "../lib/gyazo.ts";
 
 type Page = {
   id: string;
@@ -33,9 +34,21 @@ export default function Home({ data }: PageProps<Page[]>) {
           <li key={page.id} class="my-8">
             <a href={`/pages/${titlePurify(page.title)}`}>
               {page.image
-                ? <img src={page.image} class="mb-2 rounded"></img>
+                ? isGyazoUrl(page.image)
+                  ? (
+                    <img
+                      src={page.image}
+                      srcset={gyazoSrcset(page.image)}
+                      class="mb-2 rounded"
+                    >
+                    </img>
+                  )
+                  : (
+                    <img src={page.image} class="mb-2 rounded">
+                    </img>
+                  )
                 : (
-                  <div class="w-[400px] h-[300px] text-center mx-auto font-bold flex justify-center items-center bg-black bg-opacity-[0.04] mb-2 rounded text-[2rem]">
+                  <div class="h-[300px] text-center mx-auto font-bold flex justify-center items-center bg-black bg-opacity-[0.04] mb-2 rounded text-[2rem]">
                     {page.title}
                   </div>
                 )}
