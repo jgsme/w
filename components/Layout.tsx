@@ -18,6 +18,11 @@ export const Layout: FunctionComponent = ({ children }) => {
         }}
       >
       </script>
+      <div class="w-full bg-[#82221c] h-[4rem] py-[8px]">
+        <a href="/" class="w-[4rem] h-[4rem]">
+          <img src="/mark.svg" class="w-full h-full"></img>
+        </a>
+      </div>
       {children}
     </>
   );
