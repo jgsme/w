@@ -11,27 +11,39 @@ type Page = {
   image: string | null;
 };
 
-export const handler: Handlers<Page[]> = {
-  async GET(_, ctx) {
-    const { data, error } = await latsetArticles();
+export const handler: Handlers<{ pages: Page[]; p: number }> = {
+  async GET(req, ctx) {
+    const url = new URL(req.url);
+    const p = parseInt(url.searchParams.get("p") ?? "0");
+    const { data, error } = await latsetArticles(
+      p,
+    );
     if (data) {
-      return ctx.render(data);
+      return ctx.render({
+        pages: data,
+        p,
+      });
     }
     if (error) {
       console.log(error);
     }
-    return ctx.render([]);
+    return ctx.render({
+      pages: [],
+      p,
+    });
   },
 };
 
-export default function Home({ data }: PageProps<Page[]>) {
+export default function Home(
+  { data: { pages, p } }: PageProps<{ pages: Page[]; p: number }>,
+) {
   return (
-    <div class="max-w-[600px] mx-auto">
+    <div class="max-w-[600px] mx-auto pb-[200px]">
       <Head>
         <title>I am Electrical machine</title>
       </Head>
       <ul>
-        {data.map((page) => (
+        {pages.map((page) => (
           <li key={page.id} class="my-8">
             <a href={`/pages/${titlePurify(page.title)}`}>
               {page.image
@@ -58,6 +70,12 @@ export default function Home({ data }: PageProps<Page[]>) {
           </li>
         ))}
       </ul>
+      <div class="flex justify-between mt-[80px]">
+        {p === 0 && <div></div>}
+        {p === 1 && <a href="/" class="block underline">前のページ</a>}
+        {p > 1 && <a href={`/?p=${p - 1}`} class="block underline">前のページ</a>}
+        <a href={`/?p=${p + 1}`} class="block underline">次のページ</a>
+      </div>
     </div>
   );
 }
