@@ -6,9 +6,9 @@ const client = createClient<Database>(
   Deno.env.get("SUPABASE_ANON_KEY")!,
 );
 
-export const latsetArticles = async () => {
+export const latsetArticles = async (p = 0) => {
   return await client.rpc("latest_articles", {
-    offset_arg: 0,
-    limit_arg: 20,
+    offset_arg: p * 20,
+    limit_arg: (p + 1) * 20,
   });
 };
