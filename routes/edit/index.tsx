@@ -1,4 +1,5 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
+import { Layout } from "../../components/Layout.tsx";
 import Editor from "../../islands/Editor.tsx";
 
 export const handler: Handlers<{
@@ -18,12 +19,12 @@ export default function SignInPage({ data: { url, key } }: PageProps<{
   key: string;
 }>) {
   return (
-    <div>
+    <Layout>
       <Editor
         url={url}
         _key={key}
       >
       </Editor>
-    </div>
+    </Layout>
   );
 }

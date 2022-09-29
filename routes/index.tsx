@@ -3,6 +3,7 @@ import { titlePurify } from "../lib/titlePurify.ts";
 import { Head } from "$fresh/src/runtime/head.ts";
 import { gyazoSrcset, isGyazoUrl } from "../lib/gyazo.ts";
 import { latsetArticles } from "../lib/latestArticles.ts";
+import { Layout } from "../components/Layout.tsx";
 
 type Page = {
   id: string;
@@ -38,44 +39,46 @@ export default function Home(
   { data: { pages, p } }: PageProps<{ pages: Page[]; p: number }>,
 ) {
   return (
-    <div class="max-w-[600px] mx-auto pb-[200px]">
-      <Head>
-        <title>I am Electrical machine</title>
-      </Head>
-      <ul>
-        {pages.map((page) => (
-          <li key={page.id} class="my-8">
-            <a href={`/pages/${titlePurify(page.title)}`}>
-              {page.image
-                ? isGyazoUrl(page.image)
-                  ? (
-                    <img
-                      src={page.image}
-                      srcset={gyazoSrcset(page.image)}
-                      class="mb-2 rounded"
-                    >
-                    </img>
-                  )
+    <Layout>
+      <div class="max-w-[600px] mx-auto pb-[200px]">
+        <Head>
+          <title>I am Electrical machine</title>
+        </Head>
+        <ul>
+          {pages.map((page) => (
+            <li key={page.id} class="my-8">
+              <a href={`/pages/${titlePurify(page.title)}`}>
+                {page.image
+                  ? isGyazoUrl(page.image)
+                    ? (
+                      <img
+                        src={page.image}
+                        srcset={gyazoSrcset(page.image)}
+                        class="mb-2 rounded"
+                      >
+                      </img>
+                    )
+                    : (
+                      <img src={page.image} class="mb-2 rounded">
+                      </img>
+                    )
                   : (
-                    <img src={page.image} class="mb-2 rounded">
-                    </img>
-                  )
-                : (
-                  <div class="h-[300px] text-center mx-auto font-bold flex justify-center items-center bg-black bg-opacity-[0.04] mb-2 rounded text-[2rem]">
-                    {page.title}
-                  </div>
-                )}
-              <div class="font-bold text-[1.2rem]">{page.title}</div>
-            </a>
-          </li>
-        ))}
-      </ul>
-      <div class="flex justify-between mt-[80px]">
-        {p === 0 && <div></div>}
-        {p === 1 && <a href="/" class="block underline">前のページ</a>}
-        {p > 1 && <a href={`/?p=${p - 1}`} class="block underline">前のページ</a>}
-        <a href={`/?p=${p + 1}`} class="block underline">次のページ</a>
+                    <div class="h-[300px] text-center mx-auto font-bold flex justify-center items-center bg-black bg-opacity-[0.04] mb-2 rounded text-[2rem]">
+                      {page.title}
+                    </div>
+                  )}
+                <div class="font-bold text-[1.2rem]">{page.title}</div>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <div class="flex justify-between mt-[80px]">
+          {p === 0 && <div></div>}
+          {p === 1 && <a href="/" class="block underline">前のページ</a>}
+          {p > 1 && <a href={`/?p=${p - 1}`} class="block underline">前のページ</a>}
+          <a href={`/?p=${p + 1}`} class="block underline">次のページ</a>
+        </div>
       </div>
-    </div>
+    </Layout>
   );
 }

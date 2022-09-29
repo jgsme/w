@@ -1,6 +1,7 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { useMemo } from "preact/hooks";
 import { parse } from "scrapbox-parser";
+import { Layout } from "../../components/Layout.tsx";
 import { Render } from "../../components/Render.tsx";
 import { titlePurify } from "../../lib/titlePurify.ts";
 
@@ -29,9 +30,11 @@ export default function Page({ data }: PageProps<string>) {
   }, [data]);
   return page
     ? (
-      <div class="max-w-[600px] mx-auto p-2">
-        <Render page={page}></Render>
-      </div>
+      <Layout>
+        <div class="max-w-[600px] mx-auto p-2">
+          <Render page={page}></Render>
+        </div>
+      </Layout>
     )
     : null;
 }
