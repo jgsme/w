@@ -4,6 +4,7 @@ import { parse } from "scrapbox-parser";
 import { Layout } from "../../components/Layout.tsx";
 import { Render } from "../../components/Render.tsx";
 import { titlePurify } from "../../lib/titlePurify.ts";
+import { Head } from "$fresh/src/runtime/head.ts";
 
 export const handler: Handlers<string | null> = {
   async GET(_, ctx) {
@@ -31,6 +32,9 @@ export default function Page({ data }: PageProps<string>) {
   return page
     ? (
       <Layout>
+        <Head>
+          <title>{page[0].type === "title" && page[0].text}</title>
+        </Head>
         <div class="max-w-[600px] mx-auto p-2">
           <Render page={page}></Render>
         </div>
