@@ -46,6 +46,17 @@ const Editor: FunctionComponent<{ url: string; _key: string }> = (
       });
     }
   }, []);
+  const toClip = useCallback((page: Page) => async () => {
+    const { data } = await client.from("clips").select("id").eq(
+      "page_id",
+      page.id,
+    ).limit(1);
+    if (data?.length === 0) {
+      await client.from("clips").insert({
+        page_id: page.id,
+      });
+    }
+  }, []);
   return (
     <div class="p-1">
       <Head>
@@ -63,6 +74,12 @@ const Editor: FunctionComponent<{ url: string; _key: string }> = (
             class="border border-solid border-black px-1 mr-1 rounded"
           >
             to article
+          </button>
+          <button
+            onClick={toClip(page)}
+            class="border border-solid border-black px-1 mr-1 rounded"
+          >
+            to clip
           </button>
           {page.title}
         </div>
