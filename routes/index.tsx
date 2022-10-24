@@ -54,7 +54,7 @@ export default function Home(
                       <img
                         src={page.image}
                         srcset={gyazoSrcset(page.image)}
-                        class="mb-2 rounded mx-auto"
+                        class="mb-2 rounded mx-auto h-[300px] object-contain"
                       >
                       </img>
                     )
