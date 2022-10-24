@@ -2,7 +2,6 @@ import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
 import type { FunctionComponent } from "preact";
 import { createClient } from "supabase";
 import { Database } from "../lib/database.types.ts";
-import { Head } from "$fresh/src/runtime/head.ts";
 
 type Page = {
   id: string;
@@ -59,9 +58,6 @@ const Editor: FunctionComponent<{ url: string; _key: string }> = (
   }, []);
   return (
     <div class="p-1">
-      <Head>
-        <script src="https://cdn.tailwindcss.com"></script>
-      </Head>
       <a href={`/edit?start=${start + 100}`}>
         <button class="border border-solid border-black rounded px-1">
           next
