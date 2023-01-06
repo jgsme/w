@@ -1,16 +1,16 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
-import { titlePurify } from "../lib/titlePurify.ts";
+import { titlePurify } from "../../lib/titlePurify.ts";
 import { Head } from "$fresh/src/runtime/head.ts";
-import { gyazoSrcset, isGyazoUrl } from "../lib/gyazo.ts";
-import { latsetArticles } from "../lib/latestArticles.ts";
-import { Layout } from "../components/Layout.tsx";
-import { Page } from "../lib/types.ts";
+import { gyazoSrcset, isGyazoUrl } from "../../lib/gyazo.ts";
+import { latsetClips } from "../../lib/latestClips.ts";
+import { Layout } from "../../components/Layout.tsx";
+import type { Page } from "../../lib/types.ts";
 
 export const handler: Handlers<{ pages: Page[]; p: number }> = {
   async GET(req, ctx) {
     const url = new URL(req.url);
     const p = parseInt(url.searchParams.get("p") ?? "0");
-    const { data, error } = await latsetArticles(
+    const { data, error } = await latsetClips(
       p,
     );
     if (data) {
@@ -68,9 +68,11 @@ export default function Home(
         </ul>
         <div class="flex justify-between mt-[80px]">
           {p === 0 && <div></div>}
-          {p === 1 && <a href="/" class="block underline">前のページ</a>}
-          {p > 1 && <a href={`/?p=${p - 1}`} class="block underline">前のページ</a>}
-          <a href={`/?p=${p + 1}`} class="block underline">次のページ</a>
+          {p === 1 && <a href="/clips" class="block underline">前のページ</a>}
+          {p > 1 && (
+            <a href={`/clips?p=${p - 1}`} class="block underline">前のページ</a>
+          )}
+          <a href={`/clips?p=${p + 1}`} class="block underline">次のページ</a>
         </div>
       </div>
     </Layout>
