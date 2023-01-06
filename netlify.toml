@@ -1,3 +1,2 @@
 [functions]
 directory = "dist/functions"
-external_node_modules = ["astro"]
