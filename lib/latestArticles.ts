@@ -1,4 +1,4 @@
-import { client } from "./getSupabaseClient";
+import { client } from "./getSupabaseClient.ts";
 
 export const latsetArticles = async (p = 0) => {
   return await client.rpc("latest_articles", {
