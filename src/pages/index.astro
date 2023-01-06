@@ -1,12 +1,12 @@
 ---
-import { latsetArticles } from "lib/latestArticles";
 import type { Page } from "lib/types";
 import { titlePurify } from "lib/titlePurify";
 import { isGyazoUrl, gyazoSrcset } from "lib/gyazo";
 import Layout from "Layout.astro";
 const p = parseInt(Astro.url.searchParams.get("p") ?? "0");
-const res = await latsetArticles(p);
-const pages = res.data as Page[];
+const res = await fetch("https://w.kbys.tk/api/home");
+const json = await res.json();
+const pages = json as Page[];
 ---
 
 <Layout>
