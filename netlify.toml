@@ -2,5 +2,5 @@
 directory = "dist/functions"
 
 [[edge_functions]]
-path = "/test"
-function = "hello"
+path = "/api/latest_articles"
+function = "latest_articles"
