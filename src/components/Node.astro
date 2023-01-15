@@ -1,0 +1,131 @@
+---
+import type { Node } from "@progfay/scrapbox-parser";
+import { deco2style } from "lib/deco2class";
+import NodeRender from "components/Node.astro";
+import { titlePurify } from "lib/titlePurify";
+import Icon from "components/Icon.astro";
+interface Props {
+  node: Node;
+}
+const { node } = Astro.props;
+---
+
+{
+  (() => {
+    switch (node.type) {
+      case "plain":
+        return node.text;
+      case "hashTag": {
+        return (
+          <a
+            href={`https://sbx.kbys.tk/pages/${titlePurify(node.href)}`}
+            class="text-blue-500"
+          >
+            #{node.href}
+          </a>
+        );
+      }
+      case "link": {
+        switch (node.pathType) {
+          case "relative": {
+            return (
+              <a
+                href={`https://sbx.kbys.tk/pages/${titlePurify(node.href)}`}
+                class="text-blue-500"
+              >
+                {node.href}
+              </a>
+            );
+          }
+          case "root":
+            return (
+              <a
+                href={`https://scrapbox.io${node.href}`}
+                target="_blank"
+                rel="noopener"
+                class="text-blue-500"
+              >
+                {node.href}
+              </a>
+            );
+          case "absolute": {
+            // if (
+            //   /^https:\/\/www\.youtube\.com/.test(node.href) ||
+            //   /^https:\/\/youtu.be/.test(node.href)
+            // ) {
+            //   const video = videoParser.parse(node.href)
+            //   return html`
+            //     <amp-youtube
+            //       data-videoid="${video.id}"
+            //       layout="responsive"
+            //       width="480"
+            //       height="270"
+            //     ></amp-youtube>
+            //   `
+            // }
+            return (
+              <a
+                href={node.href}
+                target="_blank"
+                rel="noopener"
+                class="text-blue-500 underline"
+              >
+                {node.content ? node.content : node.href}
+              </a>
+            );
+          }
+          default: {
+            console.log(node);
+            return "";
+          }
+        }
+      }
+      case "image":
+        return (
+          <div>
+            <img src={node.src} />
+          </div>
+        );
+
+      case "decoration":
+        return (
+          <span class={deco2style(node.rawDecos)}>
+            {node.nodes.map((n) => (
+              <NodeRender node={n} />
+            ))}
+          </span>
+        );
+      case "code":
+        return <code>{node.text}</code>;
+      case "quote": {
+        return (
+          <blockquote class="bg-black bg-opacity-[0.01] border-l-4 pl-[4px] py-[2px]">
+            {node.nodes.map((n) => (
+              <NodeRender node={n} />
+            ))}
+          </blockquote>
+        );
+      }
+      case "icon": {
+        switch (node.pathType) {
+          case "root": {
+            if (node.path === "/icons/hr") {
+              return <hr />;
+            } else {
+              console.log(node);
+              return;
+            }
+          }
+          default: {
+            console.log(node);
+            return;
+          }
+        }
+      }
+      default: {
+        console.log(node);
+        return "";
+      }
+    }
+  })()
+}

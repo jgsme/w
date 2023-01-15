@@ -1,0 +1,28 @@
+---
+import type { Node } from "@progfay/scrapbox-parser";
+interface Props {
+  node: Node;
+}
+const { node } = Astro.props;
+---
+
+{
+  (() => {
+    if (node.type === "icon") {
+      switch (node.pathType) {
+        case "root": {
+          if (node.path === "/icons/hr") {
+            return <hr />;
+          } else {
+            console.log(node);
+            return "";
+          }
+        }
+        default: {
+          console.log(node);
+          return "";
+        }
+      }
+    }
+  })()
+}

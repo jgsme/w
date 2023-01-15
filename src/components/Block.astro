@@ -1,0 +1,42 @@
+---
+import type { Block } from "@progfay/scrapbox-parser";
+import Node from "components/Node.astro";
+interface Props {
+  block: Block;
+}
+const { block } = Astro.props;
+---
+
+{
+  (() => {
+    switch (block.type) {
+      case "line": {
+        return (
+          <div class={`pl-[${block.indent}rem] mb-[0.5rem]`}>
+            {block.nodes.length > 0 ? (
+              block.nodes.map((node) => <Node node={node} />)
+            ) : (
+              <br />
+            )}
+          </div>
+        );
+      }
+      case "codeBlock": {
+        return (
+          <div class={`pl-[${block.indent}rem] overflow-scroll`}>
+            <code>{block.fileName}</code>
+            <pre>
+              <code>{block.content}</code>
+            </pre>
+          </div>
+        );
+      }
+      case "title": {
+        return <h1 class="text-[20px] font-bold mb-[20px]">{block.text}</h1>;
+      }
+      default:
+        console.log(block);
+        return "";
+    }
+  })()
+}

@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@astrojs/netlify': ^1.3.0
   '@astrojs/tailwind': ^2.1.3
+  '@progfay/scrapbox-parser': ^8.1.0
   '@supabase/supabase-js': ^2.2.3
   astro: ^1.9.1
   tailwindcss: ^3.0.24
@@ -10,6 +11,7 @@ specifiers:
 dependencies:
   '@astrojs/netlify': 1.3.0
   '@astrojs/tailwind': 2.1.3_tailwindcss@3.2.4
+  '@progfay/scrapbox-parser': 8.1.0
   '@supabase/supabase-js': 2.2.3
   astro: 1.9.1
   tailwindcss: 3.2.4
@@ -480,6 +482,10 @@ packages:
 
   /@polka/url/1.0.0-next.21:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
+    dev: false
+
+  /@progfay/scrapbox-parser/8.1.0:
+    resolution: {integrity: sha512-egMX92PZp4vWwmUkEp+xBruQo7OU3qT80/AvWTUUH4UuPXsMewWu0XNckxGtxby3HEcJ2VObSp5IaUdLyBL4OA==}
     dev: false
 
   /@proload/core/0.3.3:

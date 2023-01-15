@@ -4,7 +4,9 @@ import { titlePurify } from "lib/titlePurify";
 import { isGyazoUrl, gyazoSrcset } from "lib/gyazo";
 import Layout from "Layout.astro";
 const p = parseInt(Astro.url.searchParams.get("p") ?? "0");
-const res = await fetch("https://w.kbys.tk/api/home");
+const res = await fetch(
+  `https://chimerical-tartufo-0fd27a.netlify.app/api/latest_articles?p=${p}`
+);
 const json = await res.json();
 const pages = json as Page[];
 ---
