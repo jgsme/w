@@ -7,22 +7,7 @@ const { node } = Astro.props;
 ---
 
 {
-  (() => {
-    if (node.type === "icon") {
-      switch (node.pathType) {
-        case "root": {
-          if (node.path === "/icons/hr") {
-            return <hr />;
-          } else {
-            console.log(node);
-            return "";
-          }
-        }
-        default: {
-          console.log(node);
-          return "";
-        }
-      }
-    }
-  })()
+  node.type === "icon" &&
+    node.pathType === "root" &&
+    node.path === "/icons/hr" && <hr />
 }

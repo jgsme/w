@@ -106,22 +106,8 @@ const { node } = Astro.props;
           </blockquote>
         );
       }
-      case "icon": {
-        switch (node.pathType) {
-          case "root": {
-            if (node.path === "/icons/hr") {
-              return <hr />;
-            } else {
-              console.log(node);
-              return;
-            }
-          }
-          default: {
-            console.log(node);
-            return;
-          }
-        }
-      }
+      case "icon":
+        return <Icon node={node}> </Icon>;
       default: {
         console.log(node);
         return "";
