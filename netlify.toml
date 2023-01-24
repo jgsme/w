@@ -1,6 +1,2 @@
 [functions]
 directory = "dist/functions"
-
-[[edge_functions]]
-path = "/api/latest_articles"
-function = "latest_articles"
