@@ -6,7 +6,7 @@ import Layout from "Layout.astro";
 const p = parseInt(Astro.url.searchParams.get("p") ?? "0");
 const res = await fetch(`https://kbystk-w-api.deno.dev/latest_articles?p=${p}`);
 const json = await res.json();
-const pages = json as Page[];
+const pages = json.payload as Page[];
 ---
 
 <Layout>
