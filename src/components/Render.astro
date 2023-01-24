@@ -1,0 +1,10 @@
+---
+import type { Page } from "@progfay/scrapbox-parser";
+import Block from "components/Block.astro";
+interface Props {
+  page: Page;
+}
+const { page } = Astro.props;
+---
+
+<div>{page.map((block) => <Block block={block} />)}</div>

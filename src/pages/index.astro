@@ -1,0 +1,62 @@
+---
+import type { Page } from "lib/types";
+import { titlePurify } from "lib/titlePurify";
+import { isGyazoUrl, gyazoSrcset } from "lib/gyazo";
+import Layout from "Layout.astro";
+const p = parseInt(Astro.url.searchParams.get("p") ?? "0");
+const res = await fetch(
+  `https://${import.meta.env.API_DOMAIN}/api/latest_articles?p=${p}`
+);
+const json = await res.json();
+const pages = json as Page[];
+---
+
+<Layout>
+  <title slot="after-header">I am Electrical machine</title>
+  <div class="max-w-[600px] pb-[200px] px-4 mx-auto">
+    <ul>
+      {
+        pages.map((page) => (
+          <li class="my-8">
+            <a href={`/pages/${titlePurify(page.title)}`}>
+              {page.image ? (
+                isGyazoUrl(page.image) ? (
+                  <img
+                    src={page.image}
+                    srcset={gyazoSrcset(page.image)}
+                    class="mb-2 rounded mx-auto h-[300px] object-contain"
+                  />
+                ) : (
+                  <img src={page.image} class="mb-2 rounded mx-auto" />
+                )
+              ) : (
+                <div class="h-[300px] text-center mx-auto font-bold flex justify-center items-center bg-black bg-opacity-[0.04] mb-2 rounded text-[2rem]">
+                  {page.title}
+                </div>
+              )}
+              <div class="font-bold text-[1.2rem]">{page.title}</div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="flex justify-between mt-[80px]">
+      {p === 0 && <div />}
+      {
+        p === 1 && (
+          <a href="/" class="block underline">
+            前のページ
+          </a>
+        )
+      }
+      {
+        p > 1 && (
+          <a href={`/?p=${p - 1}`} class="block underline">
+            前のページ
+          </a>
+        )
+      }
+      <a href={`/?p=${p + 1}`} class="block underline">次のページ</a>
+    </div>
+  </div>
+</Layout>

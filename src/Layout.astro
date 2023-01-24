@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SJB62M7N1F"
+    ></script>
+    <script type="text/javascript">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-SJB62M7N1F");
+    </script>
+    <slot name="after-header" />
+  </head>
+  <body>
+    <div class="w-full bg-[#82221c] h-[4rem] py-[8px]">
+      <a href="/" class="w-[4rem] h-[4rem]">
+        <img src="/mark.svg" class="w-full h-full" /></a
+      >
+    </div>
+    <slot />
+  </body>
+</html>
