@@ -14,4 +14,9 @@ export default defineConfig({
   output: "server",
   integrations: [tailwind(), solidJs()],
   adapter: netlify(),
+  vite: {
+    ssr: {
+      noExternal: "@progfay/scrapbox-parser",
+    },
+  },
 });
