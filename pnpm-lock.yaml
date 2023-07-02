@@ -8,18 +8,18 @@ specifiers:
   '@progfay/scrapbox-parser': ^8.1.0
   '@supabase/supabase-js': ^2.10.0
   astro: ^2.1.2
-  solid-js: ^1.6.12
+  solid-js: ^1.7.7
   tailwindcss: ^3.2.7
 
 dependencies:
   '@astrojs/netlify': 2.2.0_astro@2.1.2
   '@astrojs/rss': 2.2.0
-  '@astrojs/solid-js': 2.1.0_solid-js@1.6.12
+  '@astrojs/solid-js': 2.1.0_solid-js@1.7.7
   '@astrojs/tailwind': 3.1.0_5fkwwuzubt6borit3q7k7y2k74
   '@progfay/scrapbox-parser': 8.1.0
   '@supabase/supabase-js': 2.10.0
   astro: 2.1.2
-  solid-js: 1.6.12
+  solid-js: 1.7.7
   tailwindcss: 3.2.7
 
 packages:
@@ -107,14 +107,14 @@ packages:
       kleur: 4.1.5
     dev: false
 
-  /@astrojs/solid-js/2.1.0_solid-js@1.6.12:
+  /@astrojs/solid-js/2.1.0_solid-js@1.7.7:
     resolution: {integrity: sha512-p07DP9NRWJPjtF+CzPZ9lzOMkoyw6wSs3S6g3OZUxR+DVQy3VIXXDqCcnZZVJI34VakkHuViZaoNNkBW/9I54w==}
     engines: {node: '>=16.12.0'}
     peerDependencies:
       solid-js: ^1.4.3
     dependencies:
       babel-preset-solid: 1.6.10
-      solid-js: 1.6.12
+      solid-js: 1.7.7
       vitefu: 0.2.4
     transitivePeerDependencies:
       - '@babel/core'
@@ -3204,6 +3204,11 @@ packages:
       lru-cache: 6.0.0
     dev: false
 
+  /seroval/0.5.1:
+    resolution: {integrity: sha512-ZfhQVB59hmIauJG5Ydynupy8KHyr5imGNtdDhbZG68Ufh1Ynkv9KOYOAABf71oVbQxJ8VkWnMHAjEHE7fWkH5g==}
+    engines: {node: '>=10'}
+    dev: false
+
   /server-destroy/1.0.1:
     resolution: {integrity: sha512-rb+9B5YBIEzYcD6x2VKidaa+cqYBJQKnU4oe4E3ANwRRN56yk/ua1YCJT1n21NTS8w6CcOclAKNP3PhdCXKYtQ==}
     dev: false
@@ -3241,10 +3246,11 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
-  /solid-js/1.6.12:
-    resolution: {integrity: sha512-JFqRobfG3q5r1l4RYVOAukk6+FWtHpXGIjgh/GEsHKweN/kK+iHOtzUALE6+P5t/jIcSNeGiVitX8gmJg+cYvQ==}
+  /solid-js/1.7.7:
+    resolution: {integrity: sha512-SPdYVke/Z6Za24PBTbULyQYPrhGO1ZbPany76atO2zF2dmYn2pCotbsw1JtlgWnr9dK2JbwPGnA3ODTGPLhZNw==}
     dependencies:
       csstype: 3.1.1
+      seroval: 0.5.1
     dev: false
 
   /source-map-js/1.0.2:
