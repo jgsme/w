@@ -15,7 +15,7 @@
     "@astrojs/tailwind": "^3.1.0",
     "@progfay/scrapbox-parser": "^8.1.0",
     "@supabase/supabase-js": "^2.26.0",
-    "astro": "^2.7.2",
+    "astro": "^2.8.3",
     "solid-js": "^1.7.7",
     "tailwindcss": "^3.3.2"
   },
