@@ -1,0 +1,50 @@
+---
+import type { Page } from "lib/types";
+import Layout from "Layout.astro";
+import NotFound from "pages/404.astro";
+import { titlePurify } from "lib/titlePurify";
+const q = Astro.url.searchParams.get("q");
+const p = parseInt(Astro.url.searchParams.get("p") ?? "0");
+const res = await fetch(`https://kbystk-w-api.deno.dev/search?q=${q}&p=${p}`);
+const json = await res.json();
+const pages = json.payload as Page[];
+---
+
+{
+  q ? (
+    <Layout>
+      <title slot="after-header">Search Result: {q}</title>
+      <div class="max-w-[600px] mx-auto p-2">
+        {pages.map((page) => (
+          <div class="my-1">
+            <a href={`/pages/${titlePurify(page.title)}`}>
+              <button class="border border-black px-1 rounded">w</button>
+            </a>
+            <a href={`https://scrapbox.io/jigsaw/${page.title}`}>
+              <button class="border border-black px-1 rounded">sb</button>
+            </a>
+            {page.title}
+          </div>
+        ))}
+        <div class="flex justify-between mt-[80px]">
+          {p === 0 && <div />}
+          {p === 1 && (
+            <a href={`/search?q=${q}`} class="block underline">
+              前のページ
+            </a>
+          )}
+          {p > 1 && (
+            <a href={`/search?q=${q}&p=${p - 1}`} class="block underline">
+              前のページ
+            </a>
+          )}
+          <a href={`/search?q=${q}&p=${p + 1}`} class="block underline">
+            次のページ
+          </a>
+        </div>
+      </div>
+    </Layout>
+  ) : (
+    <NotFound />
+  )
+}
