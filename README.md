@@ -1,1 +1,1 @@
-# https://w.kbys.tk
+# https://w.jgs.me
