@@ -9,18 +9,18 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@astrojs/netlify": "^2.6.0",
+    "@astrojs/netlify": "^3.0.3",
     "@astrojs/rss": "^2.4.4",
-    "@astrojs/solid-js": "^2.2.1",
-    "@astrojs/tailwind": "^4.0.0",
+    "@astrojs/solid-js": "^3.0.2",
+    "@astrojs/tailwind": "^5.0.2",
     "@progfay/scrapbox-parser": "^8.1.0",
-    "@supabase/supabase-js": "^2.32.0",
-    "astro": "^2.10.12",
-    "solid-js": "^1.7.11",
-    "tailwindcss": "^3.3.3"
+    "@supabase/supabase-js": "^2.38.4",
+    "astro": "^3.4.0",
+    "solid-js": "^1.8.4",
+    "tailwindcss": "^3.3.5"
   },
-  "packageManager": "pnpm@7.25.0",
+  "packageManager": "pnpm@8.10.0",
   "volta": {
-    "node": "18.11.0"
+    "node": "20.9.0"
   }
 }
