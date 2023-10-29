@@ -10,10 +10,10 @@ export const get: APIRoute = async () => {
   return rss({
     title: "I am Electrical machine",
     description: "Notes from jigsaw",
-    site: "https://w.kbys.tk",
+    site: "https://w.jgs.me",
     items: pages.map((page) => {
       return {
-        link: `https://w.kbys.tk/pages/${titlePurify(page.title)}`,
+        link: `https://w.jgs.me/pages/${titlePurify(page.title)}`,
         title: page.title,
         pubDate: new Date(page.created),
       };
