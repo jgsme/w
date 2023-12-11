@@ -12,7 +12,7 @@
     "@astrojs/netlify": "^3.0.3",
     "@astrojs/rss": "^2.4.4",
     "@astrojs/solid-js": "^3.0.2",
-    "@astrojs/tailwind": "^5.0.2",
+    "@astrojs/tailwind": "^5.0.3",
     "@progfay/scrapbox-parser": "^8.1.0",
     "@supabase/supabase-js": "^2.38.4",
     "astro": "^3.4.0",
