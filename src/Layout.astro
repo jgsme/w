@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+---
+import { ViewTransitions } from "astro:transitions";
+---
+
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -21,6 +25,7 @@
       title="I am Electrical machine"
     />
     <slot name="after-header" />
+    <ViewTransitions />
   </head>
   <body>
     <div class="w-full bg-[#82221c] h-[4rem] py-[8px]">
