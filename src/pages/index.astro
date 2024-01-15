@@ -3,6 +3,7 @@ import type { Page } from "lib/types";
 import { titlePurify } from "lib/titlePurify";
 import { isGyazoUrl, gyazoSrcset } from "lib/gyazo";
 import Layout from "Layout.astro";
+import Search from "components/Search.astro";
 const p = parseInt(Astro.url.searchParams.get("p") ?? "0");
 const res = await fetch(`https://kbystk-w-api.deno.dev/latest_articles?p=${p}`);
 const json = await res.json();
@@ -12,6 +13,7 @@ const pages = json.payload as Page[];
 <Layout>
   <title slot="after-header">I am Electrical machine</title>
   <div class="max-w-[600px] pb-[200px] px-4 mx-auto">
+    <Search />
     <ul>
       {
         pages.map((page) => (
