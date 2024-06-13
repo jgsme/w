@@ -35,7 +35,14 @@ const { block } = Astro.props;
         );
       }
       case "title": {
-        return <h1 class="text-[20px] font-bold mb-[20px]">{block.text}</h1>;
+        return (
+          <h1
+            class="text-[20px] font-bold mb-[20px]"
+            transition:name={`title:${encodeURIComponent(block.text)}`}
+          >
+            {block.text}
+          </h1>
+        );
       }
       default:
         console.log(block);
