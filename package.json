@@ -9,15 +9,19 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@astrojs/netlify": "^4.1.1",
-    "@astrojs/rss": "^4.0.2",
-    "@astrojs/solid-js": "^4.0.1",
+    "@astrojs/netlify": "^5.3.0",
+    "@astrojs/rss": "^4.0.6",
+    "@astrojs/solid-js": "^4.3.0",
     "@astrojs/tailwind": "^5.1.0",
-    "@progfay/scrapbox-parser": "^8.1.0",
-    "@supabase/supabase-js": "^2.39.3",
-    "astro": "^4.1.2",
-    "solid-js": "^1.8.11",
-    "tailwindcss": "^3.4.1"
+    "@progfay/scrapbox-parser": "^9.0.0",
+    "@supabase/supabase-js": "^2.43.4",
+    "astro": "^4.10.2",
+    "solid-js": "^1.8.17",
+    "tailwindcss": "^3.4.4"
   },
-  "packageManager": "pnpm@8.10.0"
+  "packageManager": "pnpm@9.3.0",
+  "devDependencies": {
+    "prettier": "^3.3.2",
+    "prettier-plugin-astro": "^0.14.0"
+  }
 }
