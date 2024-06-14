@@ -1,0 +1,15 @@
+---
+const { id } = Astro.params;
+if (id) {
+  const res = await fetch(`https://kbystk-w-api.deno.dev/id_to_title?id=${id}`);
+  const json = await res.json();
+  if (json.ok) {
+    if (json.payload.length > 0) {
+      return Astro.redirect(
+        `/pages/${encodeURIComponent(json.payload[0].title)}`,
+      );
+    }
+  }
+  return Astro.redirect("/404");
+}
+---

@@ -5,16 +5,17 @@ import Layout from "Layout.astro";
 import Render from "components/Render.astro";
 import NotFound from "pages/404.astro";
 const { title } = Astro.params;
-let page;
+let page, pageTitle;
 if (title) {
   const res = await fetch(
     `https://scrapbox.io/api/pages/jigsaw/${titlePurify(
-      decodeURIComponent(title)
-    )}/text`
+      decodeURIComponent(title),
+    )}/text`,
   );
   if (res.status === 200) {
     const text = await res.text();
     page = parse(text);
+    pageTitle = page[0].type === "title" && page[0].text;
   }
 }
 ---
@@ -22,10 +23,15 @@ if (title) {
 {
   page ? (
     <Layout>
-      <title slot="after-header">
-        {page[0].type === "title" && page[0].text}
-      </title>
+      <title slot="after-header">{pageTitle}</title>
       <div class="max-w-[600px] mx-auto p-2">
+        <button
+          class="border border-solid px-1 rounded text-xs my-1"
+          id="copy"
+          data-title={pageTitle}
+        >
+          Copy Share URL
+        </button>
         <Render page={page} />
       </div>
     </Layout>
@@ -33,3 +39,16 @@ if (title) {
     <NotFound />
   )
 }
+
+<script>
+  const $copy = document.getElementById("copy");
+  $copy?.addEventListener("click", async () => {
+    const res = await fetch(`/api/title_to_id/${$copy.dataset.title}`);
+    const json = await res.json();
+    if (json.ok) {
+      navigator.clipboard.writeText(
+        `https://w.jgs.me/a/${json.payload.article_id}`,
+      );
+    }
+  });
+</script>
