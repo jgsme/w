@@ -5,7 +5,7 @@ import Layout from "Layout.astro";
 import Render from "components/Render.astro";
 import NotFound from "pages/404.astro";
 const { title } = Astro.params;
-let page, pageTitle;
+let page, pageTitle, text, description;
 if (title) {
   const res = await fetch(
     `https://scrapbox.io/api/pages/jigsaw/${titlePurify(
@@ -13,9 +13,10 @@ if (title) {
     )}/text`,
   );
   if (res.status === 200) {
-    const text = await res.text();
+    text = await res.text();
     page = parse(text);
     pageTitle = page[0].type === "title" && page[0].text;
+    description = text.split("\n").slice(3).join("").slice(0, 200);
   }
 }
 ---
@@ -24,6 +25,37 @@ if (title) {
   page ? (
     <Layout>
       <title slot="after-header">{pageTitle}</title>
+      <link
+        slot="after-header"
+        rel="alternate"
+        type="application/rss+xml"
+        title="RSS Feed"
+        href="/rss.xml"
+      />
+      <meta slot="after-header" property="og:type" content="article" />
+      <meta
+        slot="after-header"
+        property="og:title"
+        content={`${pageTitle} - I am Electrical machine`}
+      />
+      <meta
+        slot="after-header"
+        property="og:site_name"
+        content="I am Electrical machine"
+      />
+      {pageTitle && (
+        <meta
+          slot="after-header"
+          property="og:url"
+          content={`https://w.jgs.me/pages/${titlePurify(pageTitle)}`}
+        />
+      )}
+      <meta slot="after-header" name="description" content={description} />
+      <meta
+        slot="after-header"
+        property="og:description"
+        content={description}
+      />
       <div class="max-w-[600px] mx-auto p-2">
         <button
           class="border border-solid px-1 rounded text-xs my-1"
