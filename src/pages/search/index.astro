@@ -16,14 +16,26 @@ const pages = json.payload as Page[];
       <title slot="after-header">Search Result: {q}</title>
       <div class="max-w-[600px] mx-auto p-2">
         {pages.map((page) => (
-          <div class="my-1">
-            <a href={`/pages/${titlePurify(page.title)}`}>
-              <button class="border border-black px-1 rounded">w</button>
-            </a>
-            <a href={`https://scrapbox.io/jigsaw/${page.title}`}>
-              <button class="border border-black px-1 rounded">sb</button>
-            </a>
+          <div class="my-4">
             {page.title}
+            <div class="flex gap-4">
+              <a
+                href={`/pages/${titlePurify(page.title)}`}
+                class="block flex-grow"
+              >
+                <button class="border border-black px-1 rounded w-full">
+                  w
+                </button>
+              </a>
+              <a
+                href={`https://scrapbox.io/jigsaw/${page.title}`}
+                class="block flex-grow"
+              >
+                <button class="border border-black px-1 rounded w-full">
+                  sb
+                </button>
+              </a>
+            </div>
           </div>
         ))}
         <div class="flex justify-between mt-[80px]">
