@@ -1,16 +1,6 @@
 <div class="text-center mt-2">
-  <input class="border" id="search" placeholder="Search..." />
-  <button id="searchSubmit" class="border rounded py-1 px-2">Search</button>
+  <form method="get" action="/search">
+    <input class="border" name="q" placeholder="Search..." />
+    <button type="submit" class="border rounded py-1 px-2">Search</button>
+  </form>
 </div>
-
-<script>
-  import { navigate } from "astro:transitions/client";
-
-  const search = document.getElementById("search") as HTMLInputElement;
-  const button = document.getElementById("searchSubmit");
-
-  button?.addEventListener("click", () => {
-    const query = search?.value;
-    navigate(`/search?q=${query}`);
-  });
-</script>
