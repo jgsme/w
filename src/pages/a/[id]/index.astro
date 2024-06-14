@@ -5,7 +5,7 @@ if (id) {
   const json = await res.json();
   if (json.ok) {
     if (json.payload.length > 0) {
-      return Astro.redirect(
+      return Astro.rewrite(
         `/pages/${encodeURIComponent(json.payload[0].title)}`,
       );
     }
